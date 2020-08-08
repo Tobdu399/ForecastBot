@@ -15,12 +15,13 @@ def main():
 
     try:
         print("Collecting data...")
-        browser.get("https://www.foreca.fi/Finland/Ylojarvi/10vrk")
+        browser.get("https://www.foreca.fi/Finland/Ylöjärvi/10vrk")
 
         # ----------------------------------------------
 
         day = browser.find_elements_by_xpath("//div[@class='day']/a/h5")
         weather = browser.find_elements_by_xpath("//div[@class='day']/a/div/p[1]/span[@class='warm']")
+        city = browser.find_element_by_xpath("//div[@class='navihead']/h2/a").text
 
         browserIsOpen = False
 
@@ -61,13 +62,11 @@ def main():
         
         ax.plot(xdata, ydata, color="red")
         ax.set_ylim(ymin=0)
-        plt.title("10 Days Forecast (" + datetime.now().strftime("%d") + " - " + (datetime.now()+timedelta(days=10)).strftime("%d.%m") + ")")
+        plt.title("10 Days Forecast (" + datetime.now().strftime("%d") + " - " + (datetime.now()+timedelta(days=10)).strftime("%d.%m") + ")\n" + city)
         plt.ylabel("Celcius °C")
         plt.xticks(np.arange(min(xdata), max(xdata)+1, 1.0))
         plt.xticks(x_values, text_values)
         plt.show()
-
-        # plt.savefig("forecast_" + datetime.now().strftime("%d") + "-" + (datetime.now()+timedelta(days=10)).strftime("%d.%m") + ".jpg")
 
     except(KeyboardInterrupt):
         if browserIsOpen:
