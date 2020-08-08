@@ -82,7 +82,7 @@ def main():
         ax.plot(xdata, ydata2, color="blue")
 
         ax.set_ylim(ymin=0)
-        plt.title("10 Days Forecast (" + datetime.now().strftime("%d") + " - " + (datetime.now()+timedelta(days=10)).strftime("%d.%m") + ")\n" + city)
+        plt.title("10 Päivän Ennuste (" + datetime.now().strftime("%d") + " - " + (datetime.now()+timedelta(days=10)).strftime("%d.%m") + ")\n" + city)
         plt.ylabel("Celcius °C")
         plt.xticks(np.arange(min(xdata), max(xdata)+1, 1.0))
         plt.xticks(x_values, text_values)
